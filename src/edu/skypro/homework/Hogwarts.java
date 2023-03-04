@@ -39,22 +39,42 @@ public abstract class Hogwarts {
         }
     }
 
-    static void findBestPupilInMagic(Hogwarts firstPupil, Hogwarts secondPupil) {
-        if (firstPupil.getMagicPower() > secondPupil.getMagicPower()) {
-            System.out.println(firstPupil.getFullName() + " обладает большей мощностью магии, чем " + secondPupil.getFullName());
-        } else if (firstPupil.getMagicPower() == secondPupil.getMagicPower()) {
-            System.out.println("Сила магии " + firstPupil.getFullName() + " равна " + secondPupil.getFullName());
+    private int getAbilities() {
+        return magicPower + teleportationPower;
+    }
+
+    public void compareStudent(Hogwarts student) {
+        if (getAbilities() > student.getAbilities()) {
+            System.out.printf(
+                    "Ученик %s, могущественнее ученика %s; %d vs %d",
+                    getFullName(),
+                    student.getFullName(),
+                    getAbilities(),
+                    student.getAbilities()
+            );
+        } else if (getAbilities() < student.getAbilities()) {
+            System.out.printf(
+                    "Ученик %s, могущественнее ученика %s; %d vs %d",
+                    student.getFullName(),
+                    getFullName(),
+                    student.getAbilities(),
+                    getAbilities()
+            );
         } else {
-            System.out.println(secondPupil.getFullName() + " обладает большей мощностью магии, чем " + firstPupil.getFullName());
+            System.out.printf(
+                    "Способности ученика %s и %s равны; %d vs %d",
+                    getFullName(),
+                    student.getFullName(),
+                    getAbilities(),
+                    student.getAbilities()
+            );
         }
     }
-    static void findBestPupilInTeleportation(Hogwarts firstPupil, Hogwarts secondPupil) {
-        if (firstPupil.getTeleportationPower() > secondPupil.getTeleportationPower()) {
-            System.out.println(firstPupil.getFullName() + " обладает большей дальностью трансгрессии, чем " + secondPupil.getFullName());
-        } else if (firstPupil.getTeleportationPower() == secondPupil.getTeleportationPower()) {
-            System.out.println("Дальность трансгрессии у " + firstPupil.getFullName() + " равна " + secondPupil.getFullName());
-        } else {
-            System.out.println(secondPupil.getFullName() + " обладает большей дальностью трансгрессии, чем " + firstPupil.getFullName());
-        }
+
+    @Override
+    public String toString() {
+        return "Имя ученика: " + fullName +
+                "; Магическая силы: " + magicPower +
+                "; Дальность трансгрессии: " + teleportationPower + "; ";
     }
 }

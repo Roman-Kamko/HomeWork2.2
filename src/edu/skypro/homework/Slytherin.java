@@ -84,29 +84,35 @@ public class Slytherin extends Hogwarts {
     }
 
 
-    public void printInfo() {
-        System.out.println(
-                "Имя: " + getFullName() +
-                "; Колдовство " + getMagicPower() +
-                "; Трансгриссирование " + getTeleportationPower() +
-                "; Хитрость " + cunning +
-                "; Решительность " + determination +
-                "; Амбициозность " + ambition +
-                "; Находчивость " + resourcefulness +
-                "; Жажда власти " + lustForPower + ";"
-        );
-    }
-    private static int calculateCharacteristics(Slytherin pupil) {
-        return pupil.getCunning() + pupil.getDetermination() + pupil.getAmbition() + pupil.getResourcefulness() + pupil.getLustForPower();
+    private int getAbilities() {
+        return cunning + determination + ambition + resourcefulness + lustForPower;
     }
 
-    static void findBestPupil(Slytherin firstPupil, Slytherin secondPupil) {
-        if (calculateCharacteristics(firstPupil) > calculateCharacteristics(secondPupil)) {
-            System.out.println(firstPupil.getFullName() + " лучший Слизеринец, чем " + secondPupil.getFullName());
-        } else if (calculateCharacteristics(firstPupil) == calculateCharacteristics(secondPupil)) {
-            System.out.println("Способности " + firstPupil.getFullName() + " равны способностям " + secondPupil.getFullName());
+    public void compareStudent(Slytherin student) {
+        if (getAbilities() > student.getAbilities()) {
+            System.out.printf(
+                    "Ученик %s лучший Слизеренец, чем %s; %d vs %d",
+                    getFullName(),
+                    student.getFullName(),
+                    getAbilities(),
+                    student.getAbilities()
+            );
+        } else if (getAbilities() < student.getAbilities()) {
+            System.out.printf(
+                    "Ученик %s лучший Слизеренец, чем %s; %d vs %d",
+                    student.getFullName(),
+                    getFullName(),
+                    student.getAbilities(),
+                    getAbilities()
+            );
         } else {
-            System.out.println(secondPupil.getFullName() + " лучший Слизеринец, чем " + firstPupil.getFullName());
+            System.out.printf(
+                    "Способности ученика %s и %s равны; %d vs %d",
+                    getFullName(),
+                    student.getFullName(),
+                    getAbilities(),
+                    student.getAbilities()
+            );
         }
     }
 }

@@ -53,29 +53,44 @@ public class Gryffindor extends Hogwarts {
         }
     }
 
-    public void printInfo() {
-        System.out.println(
-                "Имя: " + getFullName() +
-                "; Колдовство " + getMagicPower() +
-                "; Трансгриссирование " + getTeleportationPower() +
-                "; Благородство " + generosity +
-                "; Честь " + honor +
-                "; Храбрость " + bravery + ";"
-        );
+    private int getAbilities() {
+        return generosity + honor + bravery;
     }
 
-    private static int calculateCharacteristics(Gryffindor pupil) {
-        return pupil.getBravery() + pupil.getHonor() + pupil.getGenerosity();
-    }
-
-    static void findBestPupil(Gryffindor firstPupil, Gryffindor secondPupil) {
-        if (calculateCharacteristics(firstPupil) > calculateCharacteristics(secondPupil)) {
-            System.out.println(firstPupil.getFullName() + " лучший Грифиндорец, чем " + secondPupil.getFullName());
-        } else if (calculateCharacteristics(firstPupil) == calculateCharacteristics(secondPupil)) {
-            System.out.println("Способности " + firstPupil.getFullName() + " равны способностям " + secondPupil.getFullName());
+    public void compareStudent(Gryffindor student) {
+        if (getAbilities() > student.getAbilities()) {
+            System.out.printf(
+                    "Ученик %s лучший Грифиндорец, чем %s; %d vs %d",
+                    getFullName(),
+                    student.getFullName(),
+                    getAbilities(),
+                    student.getAbilities()
+            );
+        } else if (getAbilities() < student.getAbilities()) {
+            System.out.printf(
+                    "Ученик %s лучший Грифиндорец, чем %s; %d vs %d",
+                    student.getFullName(),
+                    getFullName(),
+                    student.getAbilities(),
+                    getAbilities()
+            );
         } else {
-            System.out.println(secondPupil.getFullName() + " лучший Грифиндорец, чем " + firstPupil.getFullName());
+            System.out.printf(
+                    "Способности ученика %s и %s равны; %d vs %d",
+                    getFullName(),
+                    student.getFullName(),
+                    getAbilities(),
+                    student.getAbilities()
+            );
         }
     }
 
+    @Override
+    public String toString() {
+        return this + "Благородство: " + generosity + "; Честь: " + honor + "; Храбрость: " + bravery + ";";
+    }
+
+    public void info() {
+        System.out.println(this);
+    }
 }

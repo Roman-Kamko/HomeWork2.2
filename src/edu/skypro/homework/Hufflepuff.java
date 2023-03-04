@@ -54,26 +54,35 @@ public class Hufflepuff extends Hogwarts {
     }
 
 
-    public void printInfo() {
-        System.out.println(
-                "Имя: " + getFullName() +
-                "; Колдовство " + getMagicPower() +
-                "; Трансгриссирование " + getTeleportationPower() +
-                "; Трудолюбие " + diligence +
-                "; Верность " + loyalty +
-                "; Честь " + honesty + ";"
-        );
+    private int getAbilities() {
+        return diligence + loyalty + honesty;
     }
-    private static int calculateCharacteristics(Hufflepuff pupil) {
-        return pupil.getDiligence() + pupil.getLoyalty() + pupil.getHonesty();
-    }
-    static void findBestPupil(Hufflepuff firstPupil, Hufflepuff secondPupil) {
-        if (calculateCharacteristics(firstPupil) > calculateCharacteristics(secondPupil)) {
-            System.out.println(firstPupil.getFullName() + " лучший Пуффендуец, чем " + secondPupil.getFullName());
-        } else if (calculateCharacteristics(firstPupil) == calculateCharacteristics(secondPupil)) {
-            System.out.println("Способности " + firstPupil.getFullName() + " равны способностям " + secondPupil.getFullName());
+
+    public void compareStudent(Hufflepuff student) {
+        if (getAbilities() > student.getAbilities()) {
+            System.out.printf(
+                    "Ученик %s лучший Пуфендуец, чем %s; %d vs %d",
+                    getFullName(),
+                    student.getFullName(),
+                    getAbilities(),
+                    student.getAbilities()
+            );
+        } else if (getAbilities() < student.getAbilities()) {
+            System.out.printf(
+                    "Ученик %s лучший Пуфендуец, чем %s; %d vs %d",
+                    student.getFullName(),
+                    getFullName(),
+                    student.getAbilities(),
+                    getAbilities()
+            );
         } else {
-            System.out.println(secondPupil.getFullName() + " лучший Пуффендуец, чем " + firstPupil.getFullName());
+            System.out.printf(
+                    "Способности ученика %s и %s равны; %d vs %d",
+                    getFullName(),
+                    student.getFullName(),
+                    getAbilities(),
+                    student.getAbilities()
+            );
         }
     }
 }
