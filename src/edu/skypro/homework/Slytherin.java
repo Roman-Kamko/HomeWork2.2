@@ -115,4 +115,19 @@ public class Slytherin extends Hogwarts {
             );
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "%s Хитрость: %d; Решительность: %d; Амбициозность: %d; " +
+                        "Находчивость: %d; Жажда власти: %d;",
+                super.toString(),
+                cunning,
+                determination,
+                ambition,
+                resourcefulness,
+                lustForPower
+        );
+    }
 }
+
