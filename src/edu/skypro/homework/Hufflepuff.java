@@ -12,9 +12,9 @@ public class Hufflepuff extends Hogwarts {
                       int loyalty,
                       int honesty) {
         super(name, magicPower, teleportationPower);
-        this.diligence = diligence;
-        this.loyalty = loyalty;
-        this.honesty = honesty;
+        setDiligence(diligence);
+        setLoyalty(loyalty);
+        setHonesty(honesty);
     }
 
     public int getDiligence() {
@@ -61,7 +61,7 @@ public class Hufflepuff extends Hogwarts {
     public void compareStudent(Hufflepuff student) {
         if (getAbilities() > student.getAbilities()) {
             System.out.printf(
-                    "Ученик %s лучший Пуфендуец, чем %s; %d vs %d",
+                    "Ученик %s лучший Пуфендуец, чем %s; %d vs %d%n",
                     getFullName(),
                     student.getFullName(),
                     getAbilities(),
@@ -69,7 +69,7 @@ public class Hufflepuff extends Hogwarts {
             );
         } else if (getAbilities() < student.getAbilities()) {
             System.out.printf(
-                    "Ученик %s лучший Пуфендуец, чем %s; %d vs %d",
+                    "Ученик %s лучший Пуфендуец, чем %s; %d vs %d%n",
                     student.getFullName(),
                     getFullName(),
                     student.getAbilities(),
@@ -77,12 +77,23 @@ public class Hufflepuff extends Hogwarts {
             );
         } else {
             System.out.printf(
-                    "Способности ученика %s и %s равны; %d vs %d",
+                    "Способности ученика %s и %s равны; %d vs %d%n",
                     getFullName(),
                     student.getFullName(),
                     getAbilities(),
                     student.getAbilities()
             );
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "%s Трудолюбие: %d; Честность: %d; Верность: %d;",
+                super.toString(),
+                diligence,
+                loyalty,
+                honesty
+        );
     }
 }

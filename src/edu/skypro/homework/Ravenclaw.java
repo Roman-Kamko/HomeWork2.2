@@ -14,10 +14,10 @@ public class Ravenclaw extends Hogwarts {
                      int wit,
                      int creation) {
         super(name, magicPower, teleportationPower);
-        this.smart = smart;
-        this.wise = wise;
-        this.wit = wit;
-        this.creation = creation;
+        setSmart(smart);
+        setWise(wise);
+        setWit(wit);
+        setCreation(creation);
     }
 
     public int getSmart() {
@@ -75,7 +75,7 @@ public class Ravenclaw extends Hogwarts {
     public void compareStudent(Ravenclaw student) {
         if (getAbilities() > student.getAbilities()) {
             System.out.printf(
-                    "Ученик %s лучший Когтевранец, чем %s; %d vs %d",
+                    "Ученик %s лучший Когтевранец, чем %s; %d vs %d%n",
                     getFullName(),
                     student.getFullName(),
                     getAbilities(),
@@ -83,7 +83,7 @@ public class Ravenclaw extends Hogwarts {
             );
         } else if (getAbilities() < student.getAbilities()) {
             System.out.printf(
-                    "Ученик %s лучший Когтевранец, чем %s; %d vs %d",
+                    "Ученик %s лучший Когтевранец, чем %s; %d vs %d%n",
                     student.getFullName(),
                     getFullName(),
                     student.getAbilities(),
@@ -91,12 +91,24 @@ public class Ravenclaw extends Hogwarts {
             );
         } else {
             System.out.printf(
-                    "Способности ученика %s и %s равны; %d vs %d",
+                    "Способности ученика %s и %s равны; %d vs %d%n",
                     getFullName(),
                     student.getFullName(),
                     getAbilities(),
                     student.getAbilities()
             );
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "%s Ум: %d; Мудрость: %d; Остроумие: %d; Творчество: %d",
+                super.toString(),
+                smart,
+                wise,
+                wit,
+                creation
+        );
     }
 }

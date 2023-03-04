@@ -3,12 +3,12 @@ package edu.skypro.homework;
 public abstract class Hogwarts {
     private final String fullName;
     private int magicPower;
-    private int teleportationPower;
+    private int transgressionDistance;
 
     public Hogwarts(String name, int magicPower, int teleportationPower) {
         this.fullName = name;
-        this.magicPower = magicPower;
-        this.teleportationPower = teleportationPower;
+        setMagicPower(magicPower);
+        setTransgressionDistance(teleportationPower);
     }
 
     public String getFullName() {
@@ -19,8 +19,8 @@ public abstract class Hogwarts {
         return magicPower;
     }
 
-    public int getTeleportationPower() {
-        return teleportationPower;
+    public int getTransgressionDistance() {
+        return transgressionDistance;
     }
 
     public void setMagicPower(int magicPower) {
@@ -31,22 +31,22 @@ public abstract class Hogwarts {
         }
     }
 
-    public void setTeleportationPower(int teleportationPower) {
-        if (teleportationPower >= 0 && teleportationPower <= 100) {
-            this.teleportationPower = teleportationPower;
+    public void setTransgressionDistance(int transgressionDistance) {
+        if (transgressionDistance >= 0 && transgressionDistance <= 100) {
+            this.transgressionDistance = transgressionDistance;
         } else {
-            this.teleportationPower = 0;
+            this.transgressionDistance = 0;
         }
     }
 
     private int getAbilities() {
-        return magicPower + teleportationPower;
+        return magicPower + transgressionDistance;
     }
 
     public void compareStudent(Hogwarts student) {
         if (getAbilities() > student.getAbilities()) {
             System.out.printf(
-                    "Ученик %s, могущественнее ученика %s; %d vs %d",
+                    "Ученик %s, могущественнее ученика %s; %d vs %d%n",
                     getFullName(),
                     student.getFullName(),
                     getAbilities(),
@@ -54,7 +54,7 @@ public abstract class Hogwarts {
             );
         } else if (getAbilities() < student.getAbilities()) {
             System.out.printf(
-                    "Ученик %s, могущественнее ученика %s; %d vs %d",
+                    "Ученик %s, могущественнее ученика %s; %d vs %d%n",
                     student.getFullName(),
                     getFullName(),
                     student.getAbilities(),
@@ -62,7 +62,7 @@ public abstract class Hogwarts {
             );
         } else {
             System.out.printf(
-                    "Способности ученика %s и %s равны; %d vs %d",
+                    "Способности ученика %s и %s равны; %d vs %d%n",
                     getFullName(),
                     student.getFullName(),
                     getAbilities(),
@@ -70,11 +70,17 @@ public abstract class Hogwarts {
             );
         }
     }
+    public void info() {
+        System.out.println(this);
+    }
 
     @Override
     public String toString() {
-        return "Имя ученика: " + fullName +
-                "; Магическая силы: " + magicPower +
-                "; Дальность трансгрессии: " + teleportationPower + "; ";
+        return String.format(
+                "Ученик: %s; Магическая сила: %d; Дальность трансгрессии: %d;",
+                fullName,
+                magicPower,
+                transgressionDistance
+        );
     }
 }

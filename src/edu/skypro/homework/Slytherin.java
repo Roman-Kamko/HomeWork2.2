@@ -16,11 +16,11 @@ public class Slytherin extends Hogwarts {
                      int resourcefulness,
                      int lustForPower) {
         super(name, magicPower, teleportationPower);
-        this.cunning = cunning;
-        this.determination = determination;
-        this.ambition = ambition;
-        this.resourcefulness = resourcefulness;
-        this.lustForPower = lustForPower;
+        setCunning(cunning);
+        setDetermination(determination);
+        setAmbition(ambition);
+        setResourcefulness(resourcefulness);
+        setLustForPower(lustForPower);
     }
 
     public int getCunning() {
