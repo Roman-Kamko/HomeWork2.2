@@ -7,35 +7,75 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Gryffindor harry = new Gryffindor("Гарри Поттер", random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100));
-        Gryffindor hermione = new Gryffindor("Гермиона Грейнджер", random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100));
-        Gryffindor ron = new Gryffindor("Рон Уизли", random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100));
+        Gryffindor harry = generateGryffStudent("Гарри Поттер");
+        Gryffindor hermione = generateGryffStudent("Гермиона Грейнджер");
+        Gryffindor ron = generateGryffStudent("Рон Уизли");
 
-        harry.printInfo();
-        Gryffindor.findBestPupil(harry, ron);
+        Hufflepuff zechariah = generateHafflStudent("Захария Смит");
+        Hufflepuff cedric = generateHafflStudent("Седрик Диггори");
+        Hufflepuff justin = generateHafflStudent("Джастин Финч-Флетчли");
 
-        Hufflepuff zechariah = new Hufflepuff("Захария Смит", random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100));
-        Hufflepuff cedric = new Hufflepuff("Седрик Диггори", random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100));
-        Hufflepuff justin = new Hufflepuff("Джастин Финч-Флетчли", random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100));
 
-        cedric.printInfo();
-        Hufflepuff.findBestPupil(cedric, justin);
+        Ravenclaw zhou = generateRavenStudent("Чжоу Чанг");
+        Ravenclaw padma = generateRavenStudent("Падма Патил");
+        Ravenclaw marcus = generateRavenStudent("Маркус Белби");
 
-        Ravenclaw zhou = new Ravenclaw("Чжоу Чанг", random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100));
-        Ravenclaw padma = new Ravenclaw("Падма Патил", random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100));
-        Ravenclaw marcus = new Ravenclaw("Маркус Белби", random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100));
 
-        padma.printInfo();
-        Ravenclaw.findBestPupil(padma, marcus);
+        Slytherin draco = generateSlythStudent("Драко Малфой");
+        Slytherin graham = generateSlythStudent("Грэхэм Монтегю");
+        Slytherin gregory = generateSlythStudent("Грегори Гойл");
 
-        Slytherin draco = new Slytherin("Драко Малфой", random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100));
-        Slytherin graham = new Slytherin("Грэхэм Монтегю", random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100));
-        Slytherin gregory = new Slytherin("Грегори Гойл", random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100), random.nextInt(100));
+        harry.info();
+        cedric.info();
+        marcus.info();
+        draco.info();
 
-        draco.printInfo();
-        Slytherin.findBestPupil(draco, gregory);
+        harry.compareStudent(ron);
+        harry.compareStudent(draco);
+    }
 
-        Hogwarts.findBestPupilInMagic(draco, harry);
-        Hogwarts.findBestPupilInTeleportation(draco, harry);
+    private static Gryffindor generateGryffStudent(String fullName) {
+        return new Gryffindor(
+                fullName,
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100)
+                );
+    }
+    private static Hufflepuff generateHafflStudent(String fullName) {
+        return new Hufflepuff(
+                fullName,
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100)
+        );
+    }
+    private static Ravenclaw generateRavenStudent(String fullName) {
+        return new Ravenclaw(
+                fullName,
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100)
+        );
+    }
+
+    private static Slytherin generateSlythStudent(String fullName) {
+        return new Slytherin(
+                fullName,
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100),
+                random.nextInt(100)
+        );
     }
 }

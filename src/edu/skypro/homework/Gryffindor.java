@@ -1,7 +1,7 @@
 package edu.skypro.homework;
 
 public class Gryffindor extends Hogwarts {
-    private int generosity;
+    private int nobility;
     private int honor;
     private int bravery;
 
@@ -12,20 +12,20 @@ public class Gryffindor extends Hogwarts {
                       int honor,
                       int bravery) {
         super(name, magicPower, teleportationPower);
-        this.generosity = generosity;
-        this.honor = honor;
-        this.bravery = bravery;
+        setNobility(generosity);
+        setHonor(honor);
+        setBravery(bravery);
     }
 
-    public int getGenerosity() {
-        return generosity;
+    public int getNobility() {
+        return nobility;
     }
 
-    public void setGenerosity(int generosity) {
-        if (generosity >= 0 && generosity <= 100) {
-            this.generosity = generosity;
+    public void setNobility(int nobility) {
+        if (nobility >= 0 && nobility <= 100) {
+            this.nobility = nobility;
         } else {
-            this.generosity = 0;
+            this.nobility = 0;
         }
     }
 
@@ -53,29 +53,46 @@ public class Gryffindor extends Hogwarts {
         }
     }
 
-    public void printInfo() {
-        System.out.println(
-                "Имя: " + getFullName() +
-                "; Колдовство " + getMagicPower() +
-                "; Трансгриссирование " + getTeleportationPower() +
-                "; Благородство " + generosity +
-                "; Честь " + honor +
-                "; Храбрость " + bravery + ";"
-        );
+    private int getAbilities() {
+        return nobility + honor + bravery;
     }
 
-    private static int calculateCharacteristics(Gryffindor pupil) {
-        return pupil.getBravery() + pupil.getHonor() + pupil.getGenerosity();
-    }
-
-    static void findBestPupil(Gryffindor firstPupil, Gryffindor secondPupil) {
-        if (calculateCharacteristics(firstPupil) > calculateCharacteristics(secondPupil)) {
-            System.out.println(firstPupil.getFullName() + " лучший Грифиндорец, чем " + secondPupil.getFullName());
-        } else if (calculateCharacteristics(firstPupil) == calculateCharacteristics(secondPupil)) {
-            System.out.println("Способности " + firstPupil.getFullName() + " равны способностям " + secondPupil.getFullName());
+    public void compareStudent(Gryffindor student) {
+        if (getAbilities() > student.getAbilities()) {
+            System.out.printf(
+                    "Ученик %s лучший Грифиндорец, чем %s; %d vs %d%n",
+                    getFullName(),
+                    student.getFullName(),
+                    getAbilities(),
+                    student.getAbilities()
+            );
+        } else if (getAbilities() < student.getAbilities()) {
+            System.out.printf(
+                    "Ученик %s лучший Грифиндорец, чем %s; %d vs %d%n",
+                    student.getFullName(),
+                    getFullName(),
+                    student.getAbilities(),
+                    getAbilities()
+            );
         } else {
-            System.out.println(secondPupil.getFullName() + " лучший Грифиндорец, чем " + firstPupil.getFullName());
+            System.out.printf(
+                    "Способности ученика %s и %s равны; %d vs %d%n",
+                    getFullName(),
+                    student.getFullName(),
+                    getAbilities(),
+                    student.getAbilities()
+            );
         }
     }
 
+    @Override
+    public String toString() {
+        return String.format(
+                "%s Благородство: %d ; Честь: %d ; Храбрость: %d;",
+                super.toString(),
+                nobility,
+                honor,
+                bravery
+        );
+    }
 }

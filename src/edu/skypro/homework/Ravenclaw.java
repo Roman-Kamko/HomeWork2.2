@@ -14,10 +14,10 @@ public class Ravenclaw extends Hogwarts {
                      int wit,
                      int creation) {
         super(name, magicPower, teleportationPower);
-        this.smart = smart;
-        this.wise = wise;
-        this.wit = wit;
-        this.creation = creation;
+        setSmart(smart);
+        setWise(wise);
+        setWit(wit);
+        setCreation(creation);
     }
 
     public int getSmart() {
@@ -68,27 +68,47 @@ public class Ravenclaw extends Hogwarts {
         }
     }
 
-    public void printInfo() {
-        System.out.println(
-                "Имя: " + getFullName() +
-                "; Колдовство " + getMagicPower() +
-                "; Трансгриссирование " + getTeleportationPower() +
-                "; Ум " + smart +
-                "; Мудрость " + wise +
-                "; Остроумие " + wit +
-                "; Творчество " + creation + ";"
-        );
+    private int getAbilities() {
+        return smart + wise + wit + creation;
     }
-    private static int calculateCharacteristics(Ravenclaw pupil) {
-        return pupil.getSmart() + pupil.getWise() + pupil.getWit() + pupil.getCreation();
-    }
-    static void findBestPupil(Ravenclaw firstPupil, Ravenclaw secondPupil) {
-        if (calculateCharacteristics(firstPupil) > calculateCharacteristics(secondPupil)) {
-            System.out.println(firstPupil.getFullName() + " лучший Когтевранец, чем " + secondPupil.getFullName());
-        } else if (calculateCharacteristics(firstPupil) == calculateCharacteristics(secondPupil)) {
-            System.out.println("Способности " + firstPupil.getFullName() + " равны способностям " + secondPupil.getFullName());
+
+    public void compareStudent(Ravenclaw student) {
+        if (getAbilities() > student.getAbilities()) {
+            System.out.printf(
+                    "Ученик %s лучший Когтевранец, чем %s; %d vs %d%n",
+                    getFullName(),
+                    student.getFullName(),
+                    getAbilities(),
+                    student.getAbilities()
+            );
+        } else if (getAbilities() < student.getAbilities()) {
+            System.out.printf(
+                    "Ученик %s лучший Когтевранец, чем %s; %d vs %d%n",
+                    student.getFullName(),
+                    getFullName(),
+                    student.getAbilities(),
+                    getAbilities()
+            );
         } else {
-            System.out.println(secondPupil.getFullName() + " лучший Когтевранец, чем " + firstPupil.getFullName());
+            System.out.printf(
+                    "Способности ученика %s и %s равны; %d vs %d%n",
+                    getFullName(),
+                    student.getFullName(),
+                    getAbilities(),
+                    student.getAbilities()
+            );
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "%s Ум: %d; Мудрость: %d; Остроумие: %d; Творчество: %d",
+                super.toString(),
+                smart,
+                wise,
+                wit,
+                creation
+        );
     }
 }
